@@ -12,6 +12,8 @@
       "_utils/*": ["src/utils"],
       "_hooks/*": ["src/hooks"],
       "_services/*": ["src/services"],
+      "_modules/*": ["src/modules"],
+      "_store/*": ["src/store"]
     },
   },
   "exclude": ["node_modules", "dist", "dist-server"]

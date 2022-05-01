@@ -1,14 +1,23 @@
+const webpack = require('webpack')
 const path = require('path')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const Dotenv = require('dotenv-webpack')
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 const miniCssPlugin = new MiniCssExtractPlugin()
+const dotenv = new Dotenv()
 
 const htmlPlugin = new HtmlWebPackPlugin({
   template: '/public/index.html',
   filename: './index.html',
+})
+
+const environmentPlugin = new webpack.DefinePlugin({
+  'process.env': {
+    API_URL: JSON.stringify(process.env.API_URL)
+  }
 })
 
 module.exports = {
@@ -76,7 +85,9 @@ module.exports = {
       _utils: path.resolve(__dirname, 'src/utils'),
       _hooks: path.resolve(__dirname, 'src/hooks'),
       _services: path.resolve(__dirname, 'src/services'),
+      _modules: path.resolve(__dirname, 'src/modules'),
+      _store: path.resolve(__dirname, 'src/store'),
     },
   },
-  plugins: [htmlPlugin, miniCssPlugin],
+  plugins: [htmlPlugin, miniCssPlugin, ...(isDevelopment ? [dotenv] : [environmentPlugin])],
 }

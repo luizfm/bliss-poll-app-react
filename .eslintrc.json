@@ -5,8 +5,8 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "plugin:prettier/recommended",
-        "airbnb"
+        "airbnb",
+        "plugin:react-hooks/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -17,11 +17,9 @@
     },
     "plugins": [
         "react",
-        "prettier",
         "import"
     ],
     "rules": {
-        "prettier/prettier": "error",
         "comma-dangle": "off",
         "import/no-unresolved": "off",
         "no-unused-vars": "off",

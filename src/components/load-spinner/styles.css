@@ -1,4 +1,4 @@
-.load-spinner {
+.load-spinner-container {
   display: inline;
 
   .loader {
@@ -14,7 +14,9 @@
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
     transform: translateZ(0);
-    display: inline;
+    height: 10rem;
+    width: 10rem;
+    display: inline-block;
   }
 
   .loader:before {
@@ -29,7 +31,7 @@
   }
 
   .loader:after {
-    background: transparent;
+    background: var(--background);
     width: 75%;
     height: 75%;
     border-radius: 50%;
@@ -68,21 +70,20 @@
 
 .gray {
   .loader {
-    background: var(--gray-50);
-    background: -moz-linear-gradient(left, var(--gray-50) 10%, rgba(76,76,76, 0) 42%);
-    background: -webkit-linear-gradient(left, var(--gray-50) 10%, rgba(76,76,76, 0) 42%);
-    background: -o-linear-gradient(left, var(--gray-50) 10%, rgba(76,76,76, 0) 42%);
-    background: -ms-linear-gradient(left, var(--gray-50) 10%, rgba(76,76,76, 0) 42%);
-    background: linear-gradient(to right, var(--gray-50) 10%, rgba(76,76,76, 0) 42%);
+    background: #4c4c4c;
+    background: -moz-linear-gradient(left, #4c4c4c 10%, rgba(76,76,76, 0) 42%);
+    background: -webkit-linear-gradient(left, #4c4c4c 10%, rgba(76,76,76, 0) 42%);
+    background: -o-linear-gradient(left, #4c4c4c 10%, rgba(76,76,76, 0) 42%);
+    background: -ms-linear-gradient(left, #4c4c4c 10%, rgba(76,76,76, 0) 42%);
+    background: linear-gradient(to right, #4c4c4c 10%, rgba(76,76,76, 0) 42%);
   }
 
   .loader:before {
-    background: var(--gray-50);
+    background: #4c4c4c;
   }
 }
 
 .white {
-
   .loader {
     background: white;
     background: -moz-linear-gradient(left, white 10%, rgba(255, 255, 255, 0) 42%);
@@ -96,3 +97,4 @@
     background: white;
   }
 }
+
