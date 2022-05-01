@@ -5,5 +5,5 @@ export const GET_SERVER_HEALTH = defineAction('GET_SERVER_HEALTH')
 
 export const getServerHealth = () => (dispatch) => dispatch({
   type: GET_SERVER_HEALTH,
-  payload: getServerHealthService(),
+  payload: getServerHealthService().then((response) => response.data),
 })

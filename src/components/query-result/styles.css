@@ -1,0 +1,18 @@
+.error-card-container {
+  padding: 3.2rem;
+  border: 0.1rem solid var(--gray-8);
+  border-radius: 0.8rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .error-text {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    font-weight: 500;
+    color: var(--gray-64);
+    margin-bottom: 3.2rem;
+  }
+}

@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { defineAction as reduxDefine } from 'redux-define'
 
 const REQUEST = ['PENDING', 'FULFILLED', 'REJECTED']
