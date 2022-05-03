@@ -1,0 +1,21 @@
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2.4rem;
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  color: var(--gray-64);
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .modal-title {
+      color: var(--gray-100);
+      font-size: 1.6rem;
+      line-height: 2.4rem;
+    }
+
+  }
+}

@@ -1,0 +1,13 @@
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .modal-wrapper {
+    width: 48rem;
+    padding: 3.2rem;
+    box-sizing: border-box;
+    border-radius: 0.8rem;
+    background-color: white;
+  }
+}

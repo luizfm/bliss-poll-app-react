@@ -27,7 +27,7 @@ const App = () => {
 
   useEffect(() => {
     if (status === SERVER_STATUS.UP && !error && !loading) {
-      navigate('/list')
+      navigate('/questions')
     }
   }, [error, loading, navigate, status])
 

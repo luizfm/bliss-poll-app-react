@@ -35,3 +35,9 @@
     filter: brightness(0.8);
   }
 }
+
+.disabled {
+  background-color: var(--gray-8);
+  color: white;
+  cursor: not-allowed;
+}

@@ -13,15 +13,12 @@ const reducer = createReducer(INITIAL_STATE, {
     ...state,
     loading: true,
   }),
-  [GET_SERVER_HEALTH.FULFILLED]: (state, { payload }) => {
-    console.log('ue')
-    return {
-      ...state,
-      status: payload.status,
-      loading: false,
-      error: payload.status !== SERVER_STATUS.UP
-    }
-  },
+  [GET_SERVER_HEALTH.FULFILLED]: (state, { payload }) => ({
+    ...state,
+    status: payload.status,
+    loading: false,
+    error: payload.status !== SERVER_STATUS.UP
+  }),
   [GET_SERVER_HEALTH.REJECTED]: (state, { payload }) => ({
     ...state,
     loading: false,

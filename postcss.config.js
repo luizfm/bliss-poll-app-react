@@ -1,3 +1,5 @@
+const postCssCustomMedia = require('postcss-custom-media')
+
 module.exports = {
   plugins: [
     [
@@ -6,5 +8,8 @@ module.exports = {
         // Options
       },
     ],
+    postCssCustomMedia({
+      importFrom: './src/config/media-queries.js'
+    })
   ],
 }
