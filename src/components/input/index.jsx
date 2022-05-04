@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 
@@ -19,21 +19,41 @@ const Input = React.forwardRef(({
   endAdornment,
   error,
   ...inputProps
-}, ref) => (
-  <div className={classnames(styles['input-container'], className)}>
-    <label htmlFor={id} className={classnames(styles.label, { [styles['hidden-label']]: hiddenLabel })}>{label}</label>
-    <div className={styles['input-wrapper']}>
-      {startAdornment && (
-        <Svg className={styles['start-adornment']} icon={startAdornment} />
-      )}
-      <input ref={ref} className={styles.input} onChange={onChange} value={value} {...inputProps} />
-      {endAdornment && (
-        <Svg className={styles['end-adornment']} icon={endAdornment} />
-      )}
+}, ref) => {
+  const [isFocused, setIsFocused] = useState(false)
+
+  const onFocus = useCallback(() => {
+    setIsFocused(true)
+  }, [])
+
+  const onBlur = useCallback(() => {
+    setIsFocused(false)
+  }, [])
+
+  return (
+    <div className={classnames(styles['input-container'], className)}>
+      <label htmlFor={id} className={classnames(styles.label, { [styles['hidden-label']]: hiddenLabel })}>{label}</label>
+      <div className={classnames(styles['input-wrapper'], { [styles.focused]: isFocused })}>
+        {startAdornment && (
+          <Svg className={styles['start-adornment']} icon={startAdornment} />
+        )}
+        <input
+          ref={ref}
+          className={styles.input}
+          onChange={onChange}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          value={value}
+          {...inputProps}
+        />
+        {endAdornment && (
+          <Svg className={styles['end-adornment']} icon={endAdornment} />
+        )}
+      </div>
+      {!!error && <span className={styles['error-message']}>{error}</span>}
     </div>
-    {!!error && <span className={styles['error-message']}>{error}</span>}
-  </div>
-))
+  )
+})
 
 Input.propTypes = {
   id: PropTypes.string.isRequired,

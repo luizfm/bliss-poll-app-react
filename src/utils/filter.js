@@ -11,6 +11,14 @@ export const filterParse = (filter) => {
   const newParams = {}
   params.forEach((param) => {
     const [key, value] = param.split('=')
+    if (!value) {
+      return
+    }
+    if ((key === QUERY_PARAMS.LIMIT || key === QUERY_PARAMS.OFFSET) && value) {
+      newParams[key] = Number(value)
+      return
+    }
+
     newParams[key] = value
   })
 

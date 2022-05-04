@@ -6,8 +6,8 @@ export const getQuestionsService = (params) => {
   console.log({ params })
   return api.get('/questions', {
     params: {
-      ...params,
       limit: 10,
+      ...params,
     }
   })
 }

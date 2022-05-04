@@ -1,6 +1,6 @@
 export const INITIAL_STATE = {
   filter: '',
-  limit: null,
+  limit: 10,
   offset: null
 }
 

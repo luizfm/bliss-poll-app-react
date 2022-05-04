@@ -18,11 +18,13 @@
 /* THEMES */
 
 .primary {
-  background-color: transparent;
+  background-color: white;
   color: var(--gray-64);
+  border-color: var(--gray-8);
+  transition: filter 0.3s ease-in-out;
 
   &:hover {
-    background-color: white;
+    filter: brightness(0.9);
   }
 }
 

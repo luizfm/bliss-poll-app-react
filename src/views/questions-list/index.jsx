@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useDebouncedCallback } from 'use-debounce'
 import Fade from 'react-reveal/Fade';
+import { Waypoint } from 'react-waypoint';
 
 import { questionsList, getQuestionsSelector } from '_modules/question/selectors'
 import Input from '_components/input'
@@ -16,10 +17,13 @@ import QueryResult from '_components/query-result'
 import useToggle from '_hooks/use-toggle'
 import Button from '_components/button'
 import ShareScreenModal from '_components/share-screen-modal'
+import LoadSpinner from '_components/load-spinner';
 
 import { usePrevious } from '_hooks/use-previous'
 import styles from './styles.css'
 import { INITIAL_STATE, reducer, UPDATE_FILTER } from './reducer'
+
+const QUESTIONS_PER_RENDER = 10
 
 const QuestionsList = () => {
   const questionList = useSelector(questionsList)
@@ -37,11 +41,11 @@ const QuestionsList = () => {
     const payload = {
       filter: value,
       offset,
-      limit,
+      limit: QUESTIONS_PER_RENDER,
     }
 
     dispatch(getQuestions({ params: payload }))
-  }, [dispatch, limit, offset])
+  }, [dispatch, offset])
 
   const debouncedSearchValue = useDebouncedCallback(onSearch, 500)
 
@@ -51,12 +55,28 @@ const QuestionsList = () => {
     localDispatch({
       type: UPDATE_FILTER,
       payload: {
-        filter: value
+        filter: value,
+        limit: QUESTIONS_PER_RENDER,
       }
     })
 
     debouncedSearchValue(value)
   }, [debouncedSearchValue])
+
+  const onFetchMoreQuestions = useCallback(() => {
+    const payload = {
+      filter,
+      offset,
+      limit: limit + QUESTIONS_PER_RENDER,
+    }
+
+    localDispatch({
+      type: UPDATE_FILTER,
+      payload
+    })
+
+    dispatch(getQuestions({ params: payload }))
+  }, [dispatch, filter, limit, offset])
 
   const sharedData = useMemo(() => ({
     ...(filter ? { filter } : {}),
@@ -118,8 +138,16 @@ const QuestionsList = () => {
       <div className={styles['list-content']}>
         <QueryResult error={error} loading={loading} data={questions}>
           <ul className={styles['question-list']}>
-            {questionList.map((question) => (
-              <QuestionCard key={question.id} questionItem={question} />
+            {questionList.map((question, index) => (
+              index === questionList.length - 1 ? (
+                <Waypoint key={question.id} onEnter={onFetchMoreQuestions}>
+                  <div className={styles['waypoint-wrapper']}>
+                    <QuestionCard questionItem={question} />
+                  </div>
+                </Waypoint>
+              ) : (
+                <QuestionCard key={question.id} questionItem={question} />
+              )
             ))}
           </ul>
         </QueryResult>

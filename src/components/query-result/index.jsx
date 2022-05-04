@@ -31,7 +31,10 @@ const QueryResult = ({
 
   if (loading) {
     return (
-      <LoadSpinner />
+      <>
+        {children}
+        <LoadSpinner className={styles.loader} />
+      </>
     )
   }
 

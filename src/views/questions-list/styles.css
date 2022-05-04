@@ -20,24 +20,43 @@
     column-gap: 2.4rem;
     width: 100%;
 
+    @media (--md-viewport), (--sm-viewport) {
+      flex-direction: column;
+    }
+
     .input {
       flex: 1;
-      max-width: 48rem;
+      max-width: 29rem;
+
+      @media (--md-viewport), (--sm-viewport) {
+        width: 100%;
+        max-width: unset;
+      }
     }
 
     .button-wrapper {
       align-self: flex-end;
 
+      @media (--md-viewport), (--sm-viewport) {
+        margin-top: 2.4rem;
+        align-self: center;
+        width: 100%;
+      }
+
       .share-button {
         width: 15rem;
         height: 4rem;
+
+        @media (--md-viewport), (--sm-viewport) {
+          width: 100%;
+        }
       }
     }
   }
 
   .list-content {
     width: 100%;
-    margin-top: 4.8rem;
+    margin: 4.8rem 0 8rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,6 +72,10 @@
 
       @media (--lg-viewport) {
         justify-content: space-between;
+      }
+
+      .waypoint-wrapper {
+        display: inline-flex;
       }
     }
   }
