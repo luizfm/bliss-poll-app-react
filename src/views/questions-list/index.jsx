@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useDebouncedCallback } from 'use-debounce'
 import Fade from 'react-reveal/Fade';
 import { Waypoint } from 'react-waypoint';
+import classnames from 'classnames'
 
 import { questionsList, getQuestionsSelector } from '_modules/question/selectors'
 import Input from '_components/input'
@@ -17,7 +18,6 @@ import QueryResult from '_components/query-result'
 import useToggle from '_hooks/use-toggle'
 import Button from '_components/button'
 import ShareScreenModal from '_components/share-screen-modal'
-import LoadSpinner from '_components/load-spinner';
 
 import { usePrevious } from '_hooks/use-previous'
 import styles from './styles.css'
@@ -129,7 +129,10 @@ const QuestionsList = () => {
         />
         <div className={styles['button-wrapper']}>
           <Fade top cascade when={isShareButtonVisible}>
-            <Button className={styles['share-button']} onClick={onToggleShareScreen}>
+            <Button
+              className={classnames(styles['share-button'], { [styles.hidden]: !isShareButtonVisible })}
+              onClick={onToggleShareScreen}
+            >
               Share results
             </Button>
           </Fade>

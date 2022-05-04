@@ -50,6 +50,11 @@
         @media (--md-viewport), (--sm-viewport) {
           width: 100%;
         }
+
+        &.hidden {
+          cursor:unset;
+          pointer-events: none;
+        }
       }
     }
   }
