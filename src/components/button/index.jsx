@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 
@@ -11,13 +11,28 @@ export const BUTTON_THEME = {
 }
 
 const Button = ({
-  children, className, theme, to, ...restProps
+  children,
+  className,
+  theme,
+  to,
+  disabled,
+  ...restProps
 }) => {
+  const buttonStyles = useMemo(() => ({
+    className: classnames(
+      styles.button,
+      styles[theme],
+      { [styles.disabled]: disabled },
+      className
+    )
+  }), [className, disabled, theme])
+
   if (to) {
     return (
       <Link
-        className={classnames(styles.button, styles[theme], className)}
         to={to}
+        disabled={disabled}
+        {...buttonStyles}
         {...restProps}
       >
         {children}
@@ -27,8 +42,9 @@ const Button = ({
 
   return (
     <button
-      className={classnames(styles.button, styles[theme], className)}
       type="button"
+      disabled={disabled}
+      {...buttonStyles}
       {...restProps}
     >
       {children}
@@ -41,12 +57,14 @@ Button.propTypes = {
   className: PropTypes.string,
   theme: PropTypes.oneOf(Object.values(BUTTON_THEME)),
   to: PropTypes.string,
+  disabled: PropTypes.bool,
 }
 
 Button.defaultProps = {
   className: '',
   theme: BUTTON_THEME.PRIMARY,
-  to: ''
+  to: '',
+  disabled: false,
 }
 
 export default Button

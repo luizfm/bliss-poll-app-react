@@ -1,0 +1,43 @@
+.icon-button {
+  height: 4rem;
+  width: 4rem;
+  border: 0;
+  border-radius: 0.8rem;
+  padding: 0;
+
+  .icon {
+    height: 2.4rem;
+    width: 2.4rem;
+  }
+}
+
+
+/* THEMES */
+
+.primary {
+  background-color: white;
+  transition: filter 0.3s;
+
+  &:hover {
+    filter: brightness(0.9)
+  }
+}
+
+.secondary {
+  background-color: var(--gray-50);
+  transition: background 0.3s ease-in-out;
+
+  .icon {
+    fill: white;
+  }
+
+  &:hover {
+    background-color: var(--gray-40);
+  }
+}
+
+.disabled {
+  background-color: var(--gray-8);
+  color: white;
+  cursor: not-allowed;
+}

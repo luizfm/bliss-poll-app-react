@@ -9,9 +9,13 @@ html {
 }
 
 body {
-  font: 400 1rem 'Inter', sans-serif;
+  font: 400 1rem 'Roboto', sans-serif;
 }
 
 button {
   cursor: pointer;
+}
+
+h1 {
+  letter-spacing: 0.02rem;
 }

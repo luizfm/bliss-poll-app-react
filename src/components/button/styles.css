@@ -13,16 +13,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0.8rem 1.5rem rgba(0, 0, 0, 0.1);
 }
 
 /* THEMES */
 
 .primary {
-  background-color: transparent;
+  background-color: white;
   color: var(--gray-64);
+  border-color: var(--gray-8);
+  transition: filter 0.3s ease-in-out;
 
   &:hover {
-    background-color: white;
+    filter: brightness(0.9);
   }
 }
 
@@ -34,4 +37,10 @@
   &:hover {
     filter: brightness(0.8);
   }
+}
+
+.disabled {
+  background-color: var(--gray-8);
+  color: white;
+  cursor: not-allowed;
 }

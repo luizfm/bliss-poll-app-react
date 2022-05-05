@@ -31,7 +31,10 @@ const QueryResult = ({
 
   if (loading) {
     return (
-      <LoadSpinner />
+      <>
+        {children}
+        <LoadSpinner className={styles.loader} />
+      </>
     )
   }
 
@@ -44,7 +47,9 @@ const QueryResult = ({
 
 QueryResult.propTypes = {
   loading: PropTypes.bool,
-  data: PropTypes.node,
+  data: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.shape({})), PropTypes.shape({}), PropTypes.node
+  ]),
   error: PropTypes.bool,
   children: PropTypes.node,
   callback: PropTypes.func,
