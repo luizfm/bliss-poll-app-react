@@ -1,87 +1,101 @@
 .question-list-container {
   min-height: 100vh;
-  display: flex;
-  max-width: 112rem;
-  margin: 0 auto;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  background: url('https://images-cdn.welcomesoftware.com/Zz0zZTliMjQ4MzhlNGExMWViYmJiMjFiZTI2ZWNmN2MzZA==');
+  background-size: cover;
   padding: 8rem 4.8rem;
 
-  @media (--sm-viewport) {
-    padding: 8rem 2.4rem;
-  }
 
-  .action-box {
-    margin-top: 3.2rem;
+  .question-list-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    column-gap: 2.4rem;
-    width: 100%;
-
-    @media (--md-viewport), (--sm-viewport) {
-      flex-direction: column;
-    }
-
-    .input {
-      flex: 1;
-      max-width: 29rem;
-
-      @media (--md-viewport), (--sm-viewport) {
-        width: 100%;
-        max-width: unset;
-      }
-    }
-
-    .button-wrapper {
-      align-self: flex-end;
-
-      @media (--md-viewport), (--sm-viewport) {
-        margin-top: 2.4rem;
-        align-self: center;
-        width: 100%;
-      }
-
-      .share-button {
-        width: 15rem;
-        height: 4rem;
-
-        @media (--md-viewport), (--sm-viewport) {
-          width: 100%;
-        }
-
-        &.hidden {
-          cursor:unset;
-          pointer-events: none;
-        }
-      }
-    }
-  }
-
-  .list-content {
-    width: 100%;
-    margin: 4.8rem 0 8rem;
-    display: flex;
+    max-width: 112rem;
+    margin: 0 auto;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex: 1;
+    border-radius: 0.8rem;
 
-    .question-list {
+    @media (--sm-viewport) {
+      padding: 8rem 2.4rem;
+    }
+
+    .question-title {
+      font-size: 2.4rem;
+      line-height: 3.2rem;
+    }
+
+    .action-box {
+      margin-top: 3.2rem;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      row-gap: 2.4rem;
-      column-gap: 4.8rem;
+      align-items: center;
+      justify-content: space-between;
+      column-gap: 2.4rem;
+      width: 100%;
 
-      @media (--lg-viewport) {
-        justify-content: space-between;
+      @media (--md-viewport), (--sm-viewport) {
+        flex-direction: column;
       }
 
-      .waypoint-wrapper {
-        display: inline-flex;
+      .input {
+        flex: 1;
+        max-width: 29rem;
+
+        @media (--md-viewport), (--sm-viewport) {
+          width: 100%;
+          max-width: unset;
+        }
+      }
+
+      .button-wrapper {
+        align-self: flex-end;
+
+        @media (--md-viewport), (--sm-viewport) {
+          margin-top: 2.4rem;
+          align-self: center;
+          width: 100%;
+        }
+
+        .share-button {
+          width: 15rem;
+          height: 4rem;
+
+          @media (--md-viewport), (--sm-viewport) {
+            width: 100%;
+          }
+
+          &.hidden {
+            cursor:unset;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+
+    .list-content {
+      width: 100%;
+      margin: 4.8rem 0 8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+
+      .question-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        row-gap: 2.4rem;
+        column-gap: 4.8rem;
+
+        @media (--lg-viewport) {
+          justify-content: space-between;
+        }
+
+        .waypoint-wrapper {
+          display: inline-flex;
+        }
       }
     }
   }
+
+
 }

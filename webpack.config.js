@@ -61,7 +61,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               // localIdentName is needed to be able to work with styles.css files
-              modules: { localIdentName: '[local]___[hash:base64:5]' },
+              modules: { localIdentName: '[local]' },
               sourceMap: true,
               importLoaders: 1,
             },

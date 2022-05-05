@@ -114,50 +114,52 @@ const QuestionsList = () => {
 
   return (
     <main className={styles['question-list-container']}>
-      <h1 className={styles['question-title']}>Questions List</h1>
-      <div className={styles['action-box']}>
-        <Input
-          className={styles.input}
-          ref={inputRef}
-          id="search-question"
-          name="search-input"
-          label="Search a question"
-          startAdornment={SearchIcon}
-          value={filter}
-          onChange={onSearchChange}
-          placeholder="Search a question here"
-        />
-        <div className={styles['button-wrapper']}>
-          <Fade top cascade when={isShareButtonVisible}>
-            <Button
-              className={classnames(styles['share-button'], { [styles.hidden]: !isShareButtonVisible })}
-              onClick={onToggleShareScreen}
-            >
-              Share results
-            </Button>
-          </Fade>
+      <section className={styles['question-list-wrapper']}>
+        <h1 className={styles['question-title']}>Questions List</h1>
+        <div className={styles['action-box']}>
+          <Input
+            className={styles.input}
+            ref={inputRef}
+            id="search-question"
+            name="search-input"
+            label="Search a question"
+            startAdornment={SearchIcon}
+            value={filter}
+            onChange={onSearchChange}
+            placeholder="Search a question here"
+          />
+          <div className={styles['button-wrapper']}>
+            <Fade top cascade when={isShareButtonVisible}>
+              <Button
+                className={classnames(styles['share-button'], { [styles.hidden]: !isShareButtonVisible })}
+                onClick={onToggleShareScreen}
+              >
+                Share results
+              </Button>
+            </Fade>
+          </div>
         </div>
-      </div>
-      <div className={styles['list-content']}>
-        <QueryResult error={error} loading={loading} data={questions}>
-          <ul className={styles['question-list']}>
-            {questionList.map((question, index) => (
-              index === questionList.length - 1 ? (
-                <Waypoint key={question.id} onEnter={onFetchMoreQuestions}>
-                  <div className={styles['waypoint-wrapper']}>
-                    <QuestionCard questionItem={question} />
-                  </div>
-                </Waypoint>
-              ) : (
-                <QuestionCard key={question.id} questionItem={question} />
-              )
-            ))}
-          </ul>
-        </QueryResult>
-      </div>
-      {isShareScreenOpen && (
-        <ShareScreenModal onClose={onToggleShareScreen} sharedData={sharedData} />
-      )}
+        <div className={styles['list-content']}>
+          <QueryResult error={error} loading={loading} data={questions}>
+            <ul className={styles['question-list']}>
+              {questionList.map((question, index) => (
+                index === questionList.length - 1 ? (
+                  <Waypoint key={question.id} onEnter={onFetchMoreQuestions}>
+                    <div className={styles['waypoint-wrapper']}>
+                      <QuestionCard questionItem={question} />
+                    </div>
+                  </Waypoint>
+                ) : (
+                  <QuestionCard key={question.id} questionItem={question} />
+                )
+              ))}
+            </ul>
+          </QueryResult>
+        </div>
+        {isShareScreenOpen && (
+          <ShareScreenModal onClose={onToggleShareScreen} sharedData={sharedData} />
+        )}
+      </section>
     </main>
   )
 }
