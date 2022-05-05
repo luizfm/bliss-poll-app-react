@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 
 import QuestionsList from '_views/questions-list'
+import QuestionDetails from '_views/question-details'
 import App from '../App'
 
 const Routes = () => (
@@ -13,6 +14,7 @@ const Routes = () => (
     <Switch>
       <Route path="/" element={<App />} />
       <Route path="/questions" element={<QuestionsList />} />
+      <Route path="/questions/:questionId" element={<QuestionDetails />} />
     </Switch>
   </Router>
 )
