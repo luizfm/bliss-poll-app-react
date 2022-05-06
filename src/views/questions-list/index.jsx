@@ -140,7 +140,7 @@ const QuestionsList = () => {
           </div>
         </div>
         <div className={styles['list-content']}>
-          <QueryResult error={error} loading={loading} data={questions}>
+          <QueryResult error={error} loading={loading} data={questions} showChildrenWhileLoading>
             <ul className={styles['question-list']}>
               {questionList.map((question, index) => (
                 index === questionList.length - 1 ? (

@@ -8,7 +8,13 @@ import ErrorImage from '_assets/images/error-image.webp'
 import styles from './styles.css'
 
 const QueryResult = ({
-  loading, data, error, children, callback, callbackText
+  loading,
+  data,
+  error,
+  children,
+  showChildrenWhileLoading,
+  callback,
+  callbackText
 }) => {
   const handleCallbackAction = useMemo(
     () => (!callbackText ? (
@@ -32,7 +38,7 @@ const QueryResult = ({
   if (loading) {
     return (
       <>
-        {children}
+        {showChildrenWhileLoading && children}
         <LoadSpinner className={styles.loader} />
       </>
     )
@@ -52,6 +58,7 @@ QueryResult.propTypes = {
   ]),
   error: PropTypes.bool,
   children: PropTypes.node,
+  showChildrenWhileLoading: PropTypes.bool,
   callback: PropTypes.func,
   callbackText: PropTypes.string
 }
@@ -61,6 +68,7 @@ QueryResult.defaultProps = {
   data: null,
   error: false,
   children: null,
+  showChildrenWhileLoading: false,
   callback: () => {},
   callbackText: ''
 }
