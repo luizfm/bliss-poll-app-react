@@ -1,0 +1,39 @@
+.poll-card-container {
+  height: 34rem;
+  width: 30rem;
+  background-color: white;
+  border-radius: 0.8rem;
+  border: 0.1rem solid white;
+  box-shadow: 0 0.5rem 0.3rem rgba(0, 0, 0, 0.12), 0 0.1rem 0.2rem rgba(0, 0, 0, 0.24);
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+
+  &:hover {
+    margin-top: -1rem;
+  }
+
+  .choice {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    margin-top: 3.2rem;
+    padding-top: 2.4rem;
+    border-top: 0.1rem solid var(--gray-8);
+  }
+
+  .votes {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    color: var(--gray-64);
+  }
+
+  .favorite-button {
+    margin: 2.4rem auto;
+
+    .favorite-icon {
+      &:hover {
+        fill: red;
+        color: red;
+      }
+    }
+  }
+}

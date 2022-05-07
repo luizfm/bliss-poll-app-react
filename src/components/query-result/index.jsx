@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 
 import LoadSpinner from '_components/load-spinner'
 import Button from '_components/button'
@@ -14,7 +15,8 @@ const QueryResult = ({
   children,
   showChildrenWhileLoading,
   callback,
-  callbackText
+  callbackText,
+  alignLoaderCenter,
 }) => {
   const handleCallbackAction = useMemo(
     () => (!callbackText ? (
@@ -34,13 +36,16 @@ const QueryResult = ({
       </div>
     )
   }
-
   if (loading) {
-    return (
+    return !alignLoaderCenter ? (
       <>
         {showChildrenWhileLoading && children}
         <LoadSpinner className={styles.loader} />
       </>
+    ) : (
+      <div className={classnames({ [styles['loading-container']]: alignLoaderCenter })}>
+        <LoadSpinner className={styles.loader} />
+      </div>
     )
   }
 
@@ -60,7 +65,8 @@ QueryResult.propTypes = {
   children: PropTypes.node,
   showChildrenWhileLoading: PropTypes.bool,
   callback: PropTypes.func,
-  callbackText: PropTypes.string
+  callbackText: PropTypes.string,
+  alignLoaderCenter: PropTypes.bool,
 }
 
 QueryResult.defaultProps = {
@@ -70,7 +76,8 @@ QueryResult.defaultProps = {
   children: null,
   showChildrenWhileLoading: false,
   callback: () => {},
-  callbackText: ''
+  callbackText: '',
+  alignLoaderCenter: false,
 }
 
 export default React.memo(QueryResult)

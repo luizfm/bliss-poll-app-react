@@ -34,7 +34,7 @@ const ShareScreenModal = ({ onClose, className, sharedData }) => {
     dispatch(shareContentResults({ destinationEmail: email, contentUrl: url }))
   }, [dispatch, email, location.pathname, sharedData])
 
-  const queryParams = useMemo(() => Object.keys(sharedData).map((key) => (
+  const queryParams = useMemo(() => Object.keys(sharedData || {}).map((key) => (
     <dd key={key}>
       {key}
       :
@@ -67,15 +67,19 @@ const ShareScreenModal = ({ onClose, className, sharedData }) => {
         />
         <dl>
           <dt>
-            {`You're about to share the following page and params with ${email}`}
+            {`You're about to share the following page with ${email || '(inform an email)'}`}
           </dt>
           <dd>
             Page:
             {' '}
             {currentPage}
           </dd>
-          <dd>Search Params:</dd>
-          {queryParams}
+          {sharedData && (
+            <>
+              <dd>Search Params:</dd>
+              {queryParams}
+            </>
+          )}
         </dl>
 
         <Button
@@ -97,12 +101,13 @@ ShareScreenModal.propTypes = {
     filter: PropTypes.string,
     offset: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     limit: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  }).isRequired
+  })
 }
 
 ShareScreenModal.defaultProps = {
   onClose: () => {},
-  className: ''
+  className: '',
+  sharedData: null
 }
 
 export default React.memo(ShareScreenModal)

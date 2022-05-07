@@ -39,6 +39,15 @@
   }
 }
 
+.ghost {
+  background-color: transparent;
+  border: 0;
+
+  &:hover {
+    background-color: var(--gray-4);
+  }
+}
+
 .disabled {
   background-color: var(--gray-8);
   color: white;

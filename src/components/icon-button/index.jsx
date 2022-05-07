@@ -10,7 +10,8 @@ import styles from './styles.css'
 
 export const ICON_BUTTON_THEME = {
   PRIMARY: 'primary',
-  SECONDARY: 'secondary'
+  SECONDARY: 'secondary',
+  GHOST: 'ghost',
 }
 
 const IconButton = ({
