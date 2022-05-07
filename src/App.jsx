@@ -1,45 +1,40 @@
-import React, { useCallback, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-
-import { getServerHealth } from '_modules/server/actions'
-import { getServer } from '_modules/server/selectors'
-import QueryResult from '_components/query-result'
-import { SERVER_STATUS } from '_utils/server-constants'
+import React, { useEffect, useState } from 'react'
+import {
+  Navigate, Outlet, useLocation, useNavigate
+} from 'react-router-dom'
 
 import './styles/_colors.css'
 import './styles/global.css'
 
 import styles from './styles.css'
+import useConnectivity from './hooks/use-connectivity'
+import { usePrevious } from './hooks/use-previous'
 
 const App = () => {
+  const [isOnline, isOffline] = useConnectivity()
+  const wasOffline = usePrevious(isOffline)
   const navigate = useNavigate()
-  const { loading, status, error } = useSelector(getServer)
-  const dispatch = useDispatch()
-
-  const onFetchServer = useCallback(() => {
-    dispatch(getServerHealth())
-  }, [dispatch])
+  const location = useLocation()
+  const [lastPath, setLastPath] = useState('')
 
   useEffect(() => {
-    onFetchServer()
-  }, [onFetchServer])
-
-  useEffect(() => {
-    if (status === SERVER_STATUS.UP && !error && !loading) {
-      navigate('/questions')
+    if (isOffline) {
+      if (location.pathname !== '/offline') {
+        setLastPath(location.pathname)
+      }
+      navigate('/offline')
     }
-  }, [error, loading, navigate, status])
+  }, [isOffline, location.pathname, navigate])
+
+  useEffect(() => {
+    if (wasOffline && isOnline) {
+      navigate(lastPath)
+    }
+  }, [isOnline, lastPath, navigate, wasOffline])
 
   return (
     <div className={styles['app-container']}>
-      <QueryResult
-        loading={loading}
-        error={error}
-        data={status}
-        callback={onFetchServer}
-        callbackText="Try again here"
-      />
+      <Outlet />
     </div>
   )
 }

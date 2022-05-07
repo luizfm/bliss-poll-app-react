@@ -1,9 +1,7 @@
 .question-details-container {
-  min-height: 100vh;
-  background: url('https://images-cdn.welcomesoftware.com/Zz0zZTliMjQ4MzhlNGExMWViYmJiMjFiZTI2ZWNmN2MzZA==');
-  background-size: cover;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   .cover-image {
     width: 100%;

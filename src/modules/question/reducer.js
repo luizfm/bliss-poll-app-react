@@ -15,6 +15,8 @@ const INITIAL_STATE = {
 const reducer = createReducer(INITIAL_STATE, {
   [GET_QUESTIONS.PENDING]: (state) => ({
     ...state,
+    questions: [],
+    results: [],
     loading: true
   }),
   [GET_QUESTIONS.FULFILLED]: (state, { payload }) => {

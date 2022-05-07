@@ -1,18 +1,7 @@
 .app-container {
+  min-height: 100vh;
+  background: url('https://images-cdn.welcomesoftware.com/Zz0zZTliMjQ4MzhlNGExMWViYmJiMjFiZTI2ZWNmN2MzZA==');
+  background-size: cover;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  row-gap: 3.2rem;
-  background-color: var(--background);
-
-  .app-boilerplate-title {
-    color: red;
-  }
-
-  .boilerplate-image {
-    height: 10rem;
-    width: 12rem;
-  }
 }
