@@ -33,7 +33,7 @@ const App = () => {
   }, [isOnline, lastPath, navigate, wasOffline])
 
   useEffect(() => {
-    if (!wasOffline && isOnline) {
+    if (!wasOffline && isOnline && location.pathname === '/') {
       navigate('/server-health')
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
