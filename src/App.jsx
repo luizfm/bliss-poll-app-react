@@ -29,8 +29,16 @@ const App = () => {
   useEffect(() => {
     if (wasOffline && isOnline) {
       navigate(lastPath)
+      setLastPath('')
     }
   }, [isOnline, lastPath, navigate, wasOffline])
+
+  useEffect(() => {
+    if (!wasOffline && isOnline) {
+      navigate('/server-health')
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <div className={styles['app-container']}>

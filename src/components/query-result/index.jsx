@@ -31,8 +31,8 @@ const QueryResult = ({
     return (
       <div className={styles['error-card-container']}>
         <p className={styles['error-text']}>Oh no, what just happened?. We&apos;re sorry about this</p>
-        <img src={ErrorImage} alt="A person in front of a computer" />
-        <Button {...handleCallbackAction}>{callbackText || 'Navigate back to home'}</Button>
+        <img className={styles['error-image']} src={ErrorImage} alt="A person in front of a computer" />
+        <Button className={styles['error-card-button']} {...handleCallbackAction}>{callbackText || 'Navigate back to home'}</Button>
       </div>
     )
   }

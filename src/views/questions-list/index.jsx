@@ -125,6 +125,7 @@ const QuestionsList = () => {
             label="Search a question"
             startAdornment={SearchIcon}
             value={filter}
+            disabled={error}
             onChange={onSearchChange}
             placeholder="Search a question here"
           />
