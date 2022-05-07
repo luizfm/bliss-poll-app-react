@@ -1,22 +1,25 @@
 import React, { useCallback, useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 import CloseIcon from '_assets/icons/close-icon.svg'
 import Modal from '_components/modal'
 import Input from '_components/input'
-import { getCurrentPageName, contentUrlParse } from '_utils/filter'
+import { getCurrentPageName, contentUrlParse, PARAMS_AND_PAGE_ICONS } from '_utils/filter'
 import { shareContentResults } from '_modules/question/actions'
 import Button, { BUTTON_THEME } from '_components/button'
 import IconButton from '_components/icon-button'
+import Svg from '_components/svg'
 
 import styles from './styles.css'
 
 const ShareScreenModal = ({ onClose, className, sharedData }) => {
   const dispatch = useDispatch()
+  const urlParams = useParams()
+
   const location = useLocation()
-  const currentPage = getCurrentPageName(location.pathname)
+  const currentPage = getCurrentPageName(location.pathname, urlParams)
   const [email, setEmail] = useState('')
 
   const onEmailChange = useCallback((event) => {
@@ -35,12 +38,15 @@ const ShareScreenModal = ({ onClose, className, sharedData }) => {
   }, [dispatch, email, location.pathname, sharedData])
 
   const queryParams = useMemo(() => Object.keys(sharedData || {}).map((key) => (
-    <dd key={key}>
-      {key}
-      :
-      {' '}
-      {sharedData[key]}
-    </dd>
+    <div className={styles['param-description-box']}>
+      <Svg icon={PARAMS_AND_PAGE_ICONS[key]} className={styles['param-icon']} />
+      <dd key={key}>
+        {key}
+        :
+        {' '}
+        {sharedData[key]}
+      </dd>
+    </div>
   )), [sharedData])
 
   return (
@@ -66,18 +72,19 @@ const ShareScreenModal = ({ onClose, className, sharedData }) => {
           placeholder="email@gmail.com"
         />
         <dl>
-          <dt>
+          <p className={styles['share-tip']}>
             {`You're about to share the following page with ${email || '(inform an email)'}`}
-          </dt>
-          <dd>
-            Page:
-            {' '}
+          </p>
+          <dt className={styles['page-info-container']}>
+            <Svg icon={PARAMS_AND_PAGE_ICONS.PAGE} />
+            <span>Page: </span>
             {currentPage}
-          </dd>
+          </dt>
           {sharedData && (
             <>
-              <dd>Search Params:</dd>
-              {queryParams}
+              <div className={styles['param-description-container']}>
+                {queryParams}
+              </div>
             </>
           )}
         </dl>

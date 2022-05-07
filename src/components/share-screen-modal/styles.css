@@ -18,4 +18,39 @@
     }
 
   }
+
+  .share-tip {
+    margin-bottom: 2.4rem;
+  }
+
+  .page-info-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: 0.8rem;
+
+  }
+
+  .param-description-container {
+    display: flex;
+    margin-top: 2.4rem;
+
+    .param-description-box {
+      padding-right: 1.6rem;
+      display: flex;
+      align-items: center;
+
+      &:not(:first-of-type) {
+        padding-left: 1.6rem;
+      }
+
+      &:not(:last-of-type) {
+        border-right: 0.1rem solid var(--gray-8)
+      }
+
+      .param-icon {
+        margin-right: 0.8rem;
+      }
+    }
+  }
 }
