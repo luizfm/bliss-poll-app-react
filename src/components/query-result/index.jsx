@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react'
 import PropTypes from 'prop-types'
+import classnames from 'classnames'
 
 import LoadSpinner from '_components/load-spinner'
 import Button from '_components/button'
@@ -8,7 +9,14 @@ import ErrorImage from '_assets/images/error-image.webp'
 import styles from './styles.css'
 
 const QueryResult = ({
-  loading, data, error, children, callback, callbackText
+  loading,
+  data,
+  error,
+  children,
+  showChildrenWhileLoading,
+  callback,
+  callbackText,
+  alignLoaderCenter,
 }) => {
   const handleCallbackAction = useMemo(
     () => (!callbackText ? (
@@ -28,13 +36,16 @@ const QueryResult = ({
       </div>
     )
   }
-
   if (loading) {
-    return (
+    return !alignLoaderCenter ? (
       <>
-        {children}
+        {showChildrenWhileLoading && children}
         <LoadSpinner className={styles.loader} />
       </>
+    ) : (
+      <div className={classnames({ [styles['loading-container']]: alignLoaderCenter })}>
+        <LoadSpinner className={styles.loader} />
+      </div>
     )
   }
 
@@ -52,8 +63,10 @@ QueryResult.propTypes = {
   ]),
   error: PropTypes.bool,
   children: PropTypes.node,
+  showChildrenWhileLoading: PropTypes.bool,
   callback: PropTypes.func,
-  callbackText: PropTypes.string
+  callbackText: PropTypes.string,
+  alignLoaderCenter: PropTypes.bool,
 }
 
 QueryResult.defaultProps = {
@@ -61,8 +74,10 @@ QueryResult.defaultProps = {
   data: null,
   error: false,
   children: null,
+  showChildrenWhileLoading: false,
   callback: () => {},
-  callbackText: ''
+  callbackText: '',
+  alignLoaderCenter: false,
 }
 
 export default React.memo(QueryResult)

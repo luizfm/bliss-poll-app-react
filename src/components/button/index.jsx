@@ -7,7 +7,8 @@ import styles from './styles.css'
 
 export const BUTTON_THEME = {
   PRIMARY: 'primary',
-  SECONDARY: 'secondary'
+  SECONDARY: 'secondary',
+  GHOST: 'ghost'
 }
 
 const Button = ({
