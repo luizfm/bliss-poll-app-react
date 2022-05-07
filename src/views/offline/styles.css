@@ -1,0 +1,26 @@
+.offline-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  .offline-card {
+    min-width: 72rem;
+    padding: 3.2rem;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    color: var(--gray-64);
+    text-align: center;
+
+    .title {
+      font-size: 1.8rem;
+      line-height: 2.6rem;
+      color: var(--gray-100)
+    }
+
+    @media (--md-viewport), (--sm-viewport) {
+      min-width: unset;
+      width: 30rem;
+    }
+  }
+}

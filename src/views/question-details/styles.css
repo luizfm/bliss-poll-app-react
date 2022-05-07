@@ -1,9 +1,7 @@
 .question-details-container {
-  min-height: 100vh;
-  background: url('https://images-cdn.welcomesoftware.com/Zz0zZTliMjQ4MzhlNGExMWViYmJiMjFiZTI2ZWNmN2MzZA==');
-  background-size: cover;
   display: flex;
   flex-direction: column;
+  position: relative;
 
   .cover-image {
     width: 100%;
@@ -27,6 +25,17 @@
     margin: -10rem auto 0;
     z-index: 10;
     width: 100%;
+    padding: 0 3.2rem;
+
+    @media (--sm-viewport) {
+      margin: -17rem auto 0;
+      padding: 2.4rem;
+    }
+
+    @media (--md-viewport) {
+      margin: -15rem auto 0;
+      padding: 3.2rem;
+    }
 
     .content-head {
       display: grid;
@@ -57,6 +66,14 @@
     .share-button-container {
       margin-top: 20rem;
 
+      @media (--sm-viewport) {
+        margin-top: 5rem;
+      }
+
+      @media (--md-viewport) {
+        margin-top: 10rem;
+      }
+
       .share-button {
         width: 15rem;
       }
@@ -66,6 +83,11 @@
       display: flex;
       margin-top: 3.2rem;
       column-gap: 3.2rem;
+
+      @media (--sm-viewport), (--md-viewport) {
+        flex-direction: column;
+        row-gap: 3.2rem;
+      }
     }
   }
 }

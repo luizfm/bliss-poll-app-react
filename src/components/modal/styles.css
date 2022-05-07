@@ -3,11 +3,19 @@
   align-items: center;
   justify-content: center;
 
+  @media (--sm-viewport) {
+    align-items: flex-end;
+  }
+
   .modal-wrapper {
     width: 48rem;
     padding: 3.2rem;
     box-sizing: border-box;
     border-radius: 0.8rem;
     background-color: white;
+
+    @media (--sm-viewport) {
+      width: 32rem;
+    }
   }
 }

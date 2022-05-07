@@ -8,6 +8,10 @@
   transition: all 0.3s ease-in-out;
   text-align: center;
 
+  @media (--md-viewport), (--sm-viewport) {
+    width: 100%;
+  }
+
   &:hover {
     margin-top: -1rem;
   }
