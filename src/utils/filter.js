@@ -1,7 +1,19 @@
+import PageIcon from '_assets/icons/page-icon.svg'
+import FilterIcon from '_assets/icons/filter-icon.svg'
+import LimitIcon from '_assets/icons/limit-icon.svg'
+import OffsetIcon from '_assets/icons/offset-icon.svg'
+
 const QUERY_PARAMS = {
   FILTER: 'filter',
   LIMIT: 'limit',
   OFFSET: 'offset'
+}
+
+export const PARAMS_AND_PAGE_ICONS = {
+  [QUERY_PARAMS.FILTER]: FilterIcon,
+  [QUERY_PARAMS.LIMIT]: LimitIcon,
+  [QUERY_PARAMS.OFFSET]: OffsetIcon,
+  PAGE: PageIcon
 }
 
 export const filterParse = (filter) => {
@@ -25,10 +37,11 @@ export const filterParse = (filter) => {
   return newParams
 }
 
-export const getCurrentPageName = (location) => {
+export const getCurrentPageName = (location, urlParams) => {
+  const hasParams = Object.keys(urlParams).length > 0
   const [_, currentPage] = location.split('/')
   const capitalizedPageName = `${currentPage[0].toUpperCase()}${currentPage.slice(1, currentPage.length - 1)}`
-  return capitalizedPageName
+  return hasParams ? `${capitalizedPageName} Details` : capitalizedPageName
 }
 
 export const contentUrlParse = (filter) => {
