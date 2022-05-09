@@ -31,12 +31,12 @@ We will also receive a message from webpack showing what ip can be used to acces
 ## How to build the project
 
 Open the main folder and run `yarn build`. Wait until your files are being compiled. Once it finishes, a `dist` folder will be showed on top. This
-folder is the that can be used to deploy the application to production using any service of your wish.
+folder is the one that can be used to deploy the application to production using any service of your wish.
 
 ## Project architecture and Folder structures
 
 On this project the SoC (Separation of Concerns) was used to structure the folders and files, 
-in order to keep make the code easy to read and maintain in the future.
+in order to keep the code easy to read and maintain in the future.
 
 ```
 .
